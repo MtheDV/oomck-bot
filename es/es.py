@@ -35,7 +35,6 @@ class _ElasticSearch:
         except exceptions.NotFoundError:
             print('No need to clear data. This must be your first time running this project!')
 
-
     def search(self, query):
         """
         Search in elastic search to find the best response that matches the tokens provided

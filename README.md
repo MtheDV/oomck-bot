@@ -47,3 +47,14 @@ The following features of our bot could be put in an API for others to use.
 3. Processing and loading of data from a JSON file into an Elastic Search instance.
 4. Answer questions regarding the Fast and Furious franchise.
 5. The basic structure of our chat-bot allows it to be used with a variety of datasets according to a developer's specific needs.
+
+### API Features
+The following two API's were implemented.
+1. Twitter API:
+   - Type 'Twitter' in your message to access the API
+   - The user can specify 'twitter' within their text to let the bot know they want tweets about Fast and Furious
+   - The API will grab the top three latest tweets relating to Fast and Furious and display them to the user
+2. Flickr API:
+   - Type 'Photo' in your message to access the API
+   - The user can specify 'photo' within their text to let the bot know they want a photo about Fast and Furious
+   - The API will grab a random photo of the top 150 photos relating to the search query 'Fast and Furious'

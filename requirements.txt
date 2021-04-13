@@ -6,3 +6,5 @@ autocorrect
 pandas
 eel
 nltk
+python-twitter
+flickrapi

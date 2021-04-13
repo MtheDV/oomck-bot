@@ -1,5 +1,7 @@
 from es import ElasticSearch
 from nlp.cleaner import Cleaner
+from vin_twitter.vin_twitter import VinTwitter
+from flickr.flickr import Flickr
 
 DEFAULT = [
     "Sorry, I don't get what you're saying, can you try again?",
@@ -22,6 +24,8 @@ class Bot:
     def __init__(self):
         self.cleaner = Cleaner
         self.es = ElasticSearch
+        self.twitter = VinTwitter()
+        self.flickr = Flickr()
 
     def ask(self, raw_input_string):
         """
@@ -29,6 +33,15 @@ class Bot:
         :return: Bots response as string
         """
         query = self.cleaner.clean(raw_input_string)
+        if "twitter" in query:
+            tweets = [s.text for s in self.twitter.search('fast and furious', 3, 'recent')]
+            tweets.insert(0, "twitter")
+            return tweets
+        if "photo" in query:
+            photo = self.flickr.search_photo("fast and furious")
+            return ["flickr",
+                    "http://farm" + str(photo["farm"]) + ".staticflickr.com/" + photo["server"] + "/" + photo["id"] + "_" +
+                    photo["secret"] + ".jpg"]
         results = self.es.search(query)
 
         if len(results) > 0:
